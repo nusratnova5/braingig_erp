@@ -11,7 +11,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
   const menuItems = [
     { text: "Dashboard", icon: <FaTachometerAlt />, path: "/" },
-    { text: "Sales", icon: <FaShoppingCart />, path: "/sales" },
+    { text: "role-management", icon: <FaShoppingCart />, path: "/role-management" },
     { text: "Customers", icon: <FaUsers />, path: "/customers" },
     { text: "Products", icon: <FaBox />, path: "/products" },
   ];
