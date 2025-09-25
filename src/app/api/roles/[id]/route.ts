@@ -5,13 +5,14 @@ import { connectDB } from "../../../../../lib/mongodb";
 // 👉 UPDATE a role (PUT /api/roles/:id)
 export async function PUT(
   request: Request,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
     await connectDB();
+    const { id } = await context.params; // ✅ await params
     const body = await request.json();
 
-    const updatedRole = await Role.findByIdAndUpdate(params.id, body, {
+    const updatedRole = await Role.findByIdAndUpdate(id, body, {
       new: true, // return the updated doc
     });
 
@@ -28,12 +29,13 @@ export async function PUT(
 // 👉 DELETE a role (DELETE /api/roles/:id)
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
     await connectDB();
+    const { id } = await context.params; // ✅ await params
 
-    const deletedRole = await Role.findByIdAndDelete(params.id);
+    const deletedRole = await Role.findByIdAndDelete(id);
 
     if (!deletedRole) {
       return NextResponse.json({ error: "Role not found" }, { status: 404 });

@@ -5,14 +5,15 @@ import Link from "next/link";
 import Image from "next/image";
 import avatar from "../../../public/images/avatar.png";
 import logo from "../../../public/images/logo.webp";
+import { logout } from "../../../lib/auth";
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const menuItems = [
     { text: "Dashboard", icon: <FaTachometerAlt />, path: "/" },
-    { text: "role-management", icon: <FaShoppingCart />, path: "/role-management" },
-    { text: "Customers", icon: <FaUsers />, path: "/customers" },
+    { text: "Role Management", icon: <FaShoppingCart />, path: "/role-management" },
+    { text: "User Management", icon: <FaUsers />, path: "/user-management" },
     { text: "Products", icon: <FaBox />, path: "/products" },
   ];
 
@@ -84,7 +85,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                 <button className="block w-full px-4 py-2 hover:bg-gray-200 text-left">
                   Profile
                 </button>
-                <button className="block w-full px-4 py-2 hover:bg-gray-200 text-left">
+                <button onClick={logout} className="block w-full px-4 py-2 hover:bg-gray-200 text-left">
                   Logout
                 </button>
               </div>
